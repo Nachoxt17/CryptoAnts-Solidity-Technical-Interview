@@ -2,7 +2,7 @@
   "name": "hardhat-tutorial",
   "version": "0.1.0",
   "description": "Hardhat-Tutorial.",
-  "main": "index.js",
+  "main": "Token.sol",
   "author": "ignacioceaglio@protonmail.com",
   "homepage": "https://github.com/Nachoxt17/Hardhat-Tutorial",
   "dependencies": {

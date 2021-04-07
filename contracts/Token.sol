@@ -1,7 +1,6 @@
-pragma solidity ^0.7.0;
 // Solidity files have to start with this pragma.
 // It will be used by the Solidity compiler to validate its version.
-
+pragma solidity ^0.7.0;
 
 
 // This is the main building block for smart contracts.
@@ -38,15 +37,15 @@ contract Token {
      * The `external` modifier makes a function *only* callable from outside
      * the contract.
      */
-    function transfer(address _to, uint256 _amount) external {
+    function transfer(address to, uint256 amount) external {
         // Check if the transaction sender has enough tokens.
         // If `require`'s first argument evaluates to `false` then the
         // transaction will revert.
-        require(balances[msg.sender] >= _amount, "Not enough tokens");
+        require(balances[msg.sender] >= amount, "Not enough tokens");
 
         // Transfer the amount.
-        balances[msg.sender] -= _amount;
-        balances[_to] += _amount;
+        balances[msg.sender] -= amount;
+        balances[to] += amount;
     }
 
     /**
@@ -55,8 +54,8 @@ contract Token {
      * The `view` modifier indicates that it doesn't modify the contract's
      * state, which allows us to call it without executing a transaction.
      */
-    function balanceOf(address _account) external view returns (uint256) {
-        return balances[_account];
+    function balanceOf(address account) external view returns (uint256) {
+        return balances[account];
     }
 }
 

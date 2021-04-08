@@ -9,10 +9,10 @@ async function main() {
   
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
-  const Token = await ethers.getContractFactory("Token");
-  const token = await Token.deploy();
+  const AntEggToken = await ethers.getContractFactory("AntEggToken");
+  const antEggToken = await AntEggToken.deploy();
 
-  console.log("Token address:", token.address);
+  console.log("AntEggToken address:", antEggToken.address);
 }
 
 main()

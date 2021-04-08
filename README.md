@@ -1,13 +1,4 @@
-# Hardhat-Tutorial
-
-This repository contains a sample project that you can use as the starting point
-for your Ethereum project. It's also a great fit for learning the basics of
-smart contract development.
-
-This project is intended to be used with the
-[Hardhat Beginners Tutorial](https://hardhat.org/tutorial), but you should be
-able to follow it by yourself by reading the README and exploring its
-`contracts`, `tests`, `scripts` and `frontend` directories.
+# CryptoAnts-Solidity-Technical-Interview
 
 ## Quick start
 
@@ -29,14 +20,6 @@ deploy your contract:
 
 ```sh
 npx hardhat run scripts/deploy.js --network localhost
-```
-
-Finally, we can run the frontend with:
-
-```sh
-cd frontend
-npm install
-npm start
 ```
 
 > Note: There's [an issue in `ganache-core`](https://github.com/trufflesuite/ganache-core/issues/650) that can make the `npm install` step fail.
@@ -76,12 +59,3 @@ Your environment will have everything you need to build a Dapp powered by Hardha
   console, try resetting your Metamask account. This will reset the account's
   transaction history and also the nonce. Open Metamask, click on your account
   followed by `Settings > Advanced > Reset Account`.
-
-## Feedback, help and news
-
-We'd love to have your feedback on this tutorial. Feel free to reach us through
-this repository or [our Discord server](https://invite.gg/HardhatSupport).
-
-Also you can [follow us on Twitter](https://twitter.com/HardhatHQ).
-
-**Happy _buidling_!**

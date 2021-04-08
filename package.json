@@ -1,11 +1,12 @@
 {
-  "name": "hardhat-tutorial",
+  "name": "cryptoants-solidity-technical-interview",
   "version": "0.1.0",
-  "description": "Hardhat-Tutorial.",
-  "main": "Token.sol",
+  "description": "CryptoAnts Solidity Technical Interview.",
+  "main": "AntEggToken.sol",
   "author": "ignacioceaglio@protonmail.com",
   "homepage": "https://github.com/Nachoxt17/Hardhat-Tutorial",
   "dependencies": {
+    "@openzeppelin/contracts": "^2.5.1",
     "babel-polyfill": "6.26.0",
     "babel-preset-env": "1.7.0",
     "babel-preset-es2015": "6.24.1",

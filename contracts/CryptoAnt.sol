@@ -27,6 +27,7 @@ contract CryptoAnt is ERC721, ERC721Full {
 
     //+-We give the Ant an ID to be able to identify it later:_
     uint _tokenId = totalSupply().add(1);
+    //+-The NFT is Minted and sended to the User:_
     _mint(msg.sender, _tokenId);
     //_setTokenURI(_tokenId, _tokenURI);
     //(This is in case we have to associate an Image or something to the NFT in the future, but for now it is not the case).

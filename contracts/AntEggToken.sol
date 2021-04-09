@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.5.5;
 
 import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
 import '@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol';
@@ -7,14 +7,12 @@ import "hardhat/console.sol";
 
 // This is the main building block for smart contracts.
 contract AntEggToken is ERC20, ERC20Detailed, ERC20Mintable {
-
-    uint256 public totalSupply = 0;
-
+    
     constructor() ERC20Detailed("AntEggToken", "AET", 0) public {
-      
+      /**+-_totalSupply is Already Initialized to zero, so we don't touch it.*/
     }
 
-    function BuyAntEggs(uint _numberOfEggs) public payable {
+    function BuyAntEggs(uint256 _numberOfEggs) public payable {
     //+-Check to make sure 0.01 ether per NumberOfEggs bought was sent to the Function call:_
     require(msg.value == 0.01 ether * _numberOfEggs, "Incorrect amount of ETH, you must pay 0.01 ETH per AntEggToken.");
     

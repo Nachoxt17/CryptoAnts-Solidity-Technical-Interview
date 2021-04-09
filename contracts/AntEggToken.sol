@@ -10,8 +10,8 @@ contract AntEggToken is ERC20, ERC20Detailed, ERC20Mintable {
 
     uint256 public totalSupply = 0;
 
-    constructor() ERC20Detailed("AntEggToken", "AET", 0) {
-      balanceOf[msg.sender] = totalSupply;
+    constructor() ERC20Detailed("AntEggToken", "AET", 0) public {
+      
     }
 
     function BuyAntEggs(uint _numberOfEggs) public payable {

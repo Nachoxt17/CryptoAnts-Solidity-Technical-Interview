@@ -1,8 +1,8 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-describe("Token contract", function() {
-  it("Deployment should assign the total supply of tokens to the owner", async function() {
+describe("Token contract", function () {
+  it("Deployment should assign the total supply of tokens to the owner", async function () {
     const [owner] = await ethers.getSigners();
     /**+-A Signer in ethers.js is an object that represents an Ethereum account. It's used to send transactions to contracts and other accounts.
     Here we're getting a list of the accounts in the node we're connected to, which in this case is Hardhat Network, and only keeping the first
@@ -30,7 +30,6 @@ describe("Token contract", function() {
     and the ones we're using here actually come from Waffle( https://getwaffle.io ). This is why we're using the hardhat-waffle plugin, which
     makes it easier to assert values from Ethereum. Check out this section in Waffle's documentation( https://ethereum-waffle.readthedocs.io/en/latest/matchers.html )
     for the entire list of Ethereum-specific matchers.*/
-    
   });
 });
 //+-On your terminal run "npx hardhat test".

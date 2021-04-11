@@ -7,14 +7,39 @@ import "hardhat/console.sol";
 
 // This is the main building block for smart contracts.
 contract AntEggToken is ERC20, ERC20Detailed, ERC20Mintable {
+
+    address payable /**private*/  _owner;
+    uint256 tokenPrice = 0.01 ether;
     
     constructor() ERC20Detailed("AntEggToken", "AET", 0) public {
       /**+-_totalSupply is Already Initialized to zero, so we don't touch it.*/
+      _owner = msg.sender;
+    }
+
+    function owner() public view returns(address) {
+      return _owner;
+    }
+    
+    function isOwner() public view returns(bool) {
+      return msg.sender == _owner;
+    }
+
+    modifier onlyOwner() {
+      require(isOwner());
+      _;
+    }
+
+    function withdrawMoney() external onlyOwner {
+      _owner.transfer(address(this).balance);
+    }
+
+    function setAntEggPrice(uint256 _price) external onlyOwner {
+      tokenPrice = _price;
     }
 
     function BuyAntEggs(uint256 _numberOfEggs) public payable {
-    //+-Check to make sure 0.01 ether per NumberOfEggs bought was sent to the Function call:_
-    require(msg.value == 0.01 ether * _numberOfEggs, "Incorrect amount of ETH, you must pay 0.01 ETH per AntEggToken.");
+    //+-Check to make sure 0.01 ether/tokenPrice per NumberOfEggs bought was sent to the Function call:_
+    require(msg.value == tokenPrice * _numberOfEggs, "Incorrect amount of ETH, you must pay 0.01/tokenPrice ETH per AntEggToken.");
     
     //+-(1)-Give the Buyer(The msg.sender that called the Function) a Temporary Permit to Mint the AntEggs that bought:_
     _addMinter(msg.sender);

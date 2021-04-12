@@ -36,8 +36,8 @@
       ]
     },
     "C:\\Users\\Public\\Documents\\Personal-Programming-Proyects\\Crypto-Ants\\contracts\\AntEggToken.sol": {
-      "lastModificationDate": 1618122221312,
-      "contentHash": "48faab6f8f9c7ca98252e9ee93a121ec",
+      "lastModificationDate": 1618265020073,
+      "contentHash": "410a427ba7fcfcbc0c1fb5371fbaffe1",
       "sourceName": "contracts/AntEggToken.sol",
       "solcConfig": {
         "version": "0.5.5",

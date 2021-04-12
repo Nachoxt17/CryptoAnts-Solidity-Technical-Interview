@@ -8,7 +8,7 @@ import "hardhat/console.sol";
 // This is the main building block for smart contracts.
 contract AntEggToken is ERC20, ERC20Detailed, ERC20Mintable {
 
-    address payable  _owner;
+    address payable public _owner;
 
     //+-We use a Variable for the price of the Token so we can change it if we want:_
     uint256 tokenPrice = 0.01 ether;

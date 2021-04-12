@@ -8,7 +8,9 @@ import "hardhat/console.sol";
 // This is the main building block for smart contracts.
 contract AntEggToken is ERC20, ERC20Detailed, ERC20Mintable {
 
-    address payable /**private*/  _owner;
+    address payable  _owner;
+
+    //+-We use a Variable for the price of the Token so we can change it if we want:_
     uint256 tokenPrice = 0.01 ether;
     
     constructor() ERC20Detailed("AntEggToken", "AET", 0) public {
@@ -16,23 +18,28 @@ contract AntEggToken is ERC20, ERC20Detailed, ERC20Mintable {
       _owner = msg.sender;
     }
 
+    //+-Returns the Address of the CryptoAnts Game Owner:_
     function owner() public view returns(address) {
       return _owner;
     }
     
+    //+-Tell if an Address is the CryptoAnts Game Owner or not:_
     function isOwner() public view returns(bool) {
       return msg.sender == _owner;
     }
 
+    //+-Modifier that allows a Function to be called ONLY by the CryptoAnts Game Owner:_
     modifier onlyOwner() {
       require(isOwner());
       _;
     }
 
+    //+-To Withdrawal all the Ether we collect from the Tokens sold:_
     function withdrawMoney() external onlyOwner {
       _owner.transfer(address(this).balance);
     }
 
+    //+-Change the Price of the Ant Egg Token:_
     function setAntEggPrice(uint256 _price) external onlyOwner {
       tokenPrice = _price;
     }
@@ -52,4 +59,4 @@ contract AntEggToken is ERC20, ERC20Detailed, ERC20Mintable {
   }
 }
 
-//+-To compile the contract run npx hardhat compile in your terminal. The compile task is one of the built-in Hardhat tasks.
+//+-To compile the contract run npx hardhat compile in your terminal.

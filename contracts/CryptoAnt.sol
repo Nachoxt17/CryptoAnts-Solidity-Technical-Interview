@@ -34,4 +34,4 @@ contract CryptoAnt is ERC721, ERC721Full {
   }
 }
 
-//+-To compile the contract run npx hardhat compile in your terminal. The compile task is one of the built-in Hardhat tasks.
+//+-To compile the contract run npx hardhat compile in your terminal.

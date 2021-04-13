@@ -19,18 +19,17 @@ contract CryptoAnt is ERC721, ERC721Full {
   }
 
   //+-Create Ant Function:_
-  function createAnt(/**string memory _tokenURI*/) public payable returns(bool) {
+  function createAnt(string memory _tokenURI) public payable returns(bool) {
     //+-Transfer 1 AntEggToken to this contract for creating an Ant, and we mark it as a MUST(require(***);):_
     antEggToken.transferFrom(msg.sender, address(this)/**+-"this" makes reference to the Smart Contract Address.*/, 1);
     require(antEggToken.transferFrom(msg.sender, address(this)/**+-"this" makes reference to the Smart Contract Address.*/, 1));
-    //require(msg.value == 1 antEggToken, "You must deposit one AntEggToken in order to get an Ant.");
 
     //+-We give the Ant an ID to be able to identify it later:_
     uint _tokenId = totalSupply().add(1);
     //+-The NFT is Minted and sended to the User:_
     _mint(msg.sender, _tokenId);
-    //_setTokenURI(_tokenId, _tokenURI);
-    //(This is in case we have to associate an Image or something to the NFT in the future, but for now it is not the case).
+    //+-The TokenURI is a key-->value Data to be associated with the TokenID in case we have to associate an Image, I.P.F.S address, etc to the N.F.T in the future:_
+    _setTokenURI(_tokenId, _tokenURI);
     return true;
   }
 }

@@ -36,8 +36,8 @@
       ]
     },
     "C:\\Users\\Public\\Documents\\Personal-Programming-Proyects\\Crypto-Ants\\contracts\\AntEggToken.sol": {
-      "lastModificationDate": 1618265020073,
-      "contentHash": "410a427ba7fcfcbc0c1fb5371fbaffe1",
+      "lastModificationDate": 1618279437730,
+      "contentHash": "05201ba57857fac9a6f9e6fa74784308",
       "sourceName": "contracts/AntEggToken.sol",
       "solcConfig": {
         "version": "0.5.5",
@@ -393,8 +393,8 @@
       ]
     },
     "C:\\Users\\Public\\Documents\\Personal-Programming-Proyects\\Crypto-Ants\\contracts\\CryptoAnt.sol": {
-      "lastModificationDate": 1618006490666,
-      "contentHash": "a848a3b306b88ea3390639e99b14250a",
+      "lastModificationDate": 1618337807187,
+      "contentHash": "9c310b805e4679f3171cf1b7adf37d4a",
       "sourceName": "contracts/CryptoAnt.sol",
       "solcConfig": {
         "version": "0.5.5",

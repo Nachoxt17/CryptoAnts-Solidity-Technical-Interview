@@ -1,5 +1,7 @@
 # CryptoAnts-Solidity-Technical-Interview
 
+![Technical Interview Tasks](https://github.com/Nachoxt17/CryptoAnts-Solidity-Technical-Interview/blob/main/Solidity-Technical-Interview.png?raw=true)
+
 ## Quick start
 
 The first things you need to do are cloning this repository and installing its

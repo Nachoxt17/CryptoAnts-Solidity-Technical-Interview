@@ -43,13 +43,12 @@ describe("Ant Egg Token Smart-Contract", function () {
   describe("Selling Tokens", function () {
     it("Should give the User the Tokens that bought with the Exact Ammount of Ether needed", async function () {
       //+-Transfer 35 Tokens that addr1 bought from _owner to addr1:_
-      await AntEggToken.connect(addr1.address).BuyAntEggs(400, { value: 4 });
-      //(For reasons I don't know the console throws a "BigNumber" bug when when placing a number with decimals inside "{ value: *here* }").
+      await AntEggToken.connect(addr1).BuyAntEggs(35, {
+        value: ethers.utils.parseEther("0.01").mul(35),
+      });
       const addr1Balance = await AntEggToken.balanceOf(addr1.address);
-      expect(addr1Balance).to.equal(400);
+      expect(addr1Balance).to.equal(35);
     });
-
-    //+-THIS has this Bug:_ Error: VoidSigner cannot sign transactions (operation="signTransaction", code=UNSUPPORTED_OPERATION, version=abstract-signer/5.1.0)
   });
 
   describe("Transactions", function () {

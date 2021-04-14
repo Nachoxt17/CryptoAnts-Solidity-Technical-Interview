@@ -10,27 +10,15 @@ describe("Ant Egg Token Smart-Contract", function () {
 
   beforeEach(async function () {
     //+-Get the ContractFactory and Signers here:_
+    CryptoAntContract = await ethers.getContractFactory("CryptoAnt");
     AntEggTokenContract = await ethers.getContractFactory("AntEggToken");
     [_owner, addr1, addr2] = await ethers.getSigners();
 
     AntEggToken = await AntEggTokenContract.deploy();
+    CryptoAnt = await CryptoAntContract.deploy(AntEggToken.address);
   });
 
   describe("Deployment", function () {
-    /**+-Although the "Deployment" Test passes successfully, in the Console it will throw a Warning saying that the Structure of using an Async Function without a
-     ".catch ()" block inside is out of date for Node, with the Following Message:_
-     
-     Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch().
-      To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode).
-      (rejection id: 2)
-
-      +-And that an Argument is missing within the Code of the node_module @ethersproject:_
-
-      UnhandledPromiseRejectionWarning: Error: missing argument:  in Contract constructor (count=0, expectedCount=1, code=MISSING_ARGUMENT, version=contracts/5.1.0)
-      at Logger.makeError (C:\...\Crypto-Ants\node_modules\@ethersproject\logger\src.ts\index.ts:205:28)
-      (It also continues logging a lot of other bugs inside "\node_modules\@ethersproject\...")
-    .*/
-
     it("Should set the right owner", async function () {
       expect(await AntEggToken.owner()).to.equal(_owner.address);
     });

@@ -2,6 +2,11 @@
 
 ![Technical Interview Tasks](https://github.com/Nachoxt17/CryptoAnts-Solidity-Technical-Interview/blob/main/Solidity-Technical-Interview.png?raw=true)
 
++-CryptoAnts is a Blockchain Non-Fungible-Tokens Game similar to CryptoKitties ( https://www.cryptokitties.co ) coded with Solidity, using
+Hardhat Development Tools and tested with hardhat-waffle.
+
++-Users can buy ERC-20 AntEggTokens at 0.01 Ether per Egg and use it to get a CryptoAnt NFT. The Owner can change the price of the AntEggToken if necessary and also can withdrawal all the Ether collected from the Tokens sold.
+
 ## Quick start
 
 The first things you need to do are cloning this repository and installing its

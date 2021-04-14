@@ -393,8 +393,8 @@
       ]
     },
     "C:\\Users\\Public\\Documents\\Personal-Programming-Proyects\\Crypto-Ants\\contracts\\CryptoAnt.sol": {
-      "lastModificationDate": 1618347636337,
-      "contentHash": "1e4e93f1eaf963ce31eb7d267249ce60",
+      "lastModificationDate": 1618356736129,
+      "contentHash": "62a3a1bf262390ee14473af6a74e3b66",
       "sourceName": "contracts/CryptoAnt.sol",
       "solcConfig": {
         "version": "0.5.5",

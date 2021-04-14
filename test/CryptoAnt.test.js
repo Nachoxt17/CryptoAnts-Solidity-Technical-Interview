@@ -8,27 +8,17 @@ describe("CryptoAnt Smart-Contract", function () {
   let addr1;
   let addr2;
 
-  /**beforeEach(async function () {
+  beforeEach(async function () {
     //+-Get the ContractFactory and Signers here:_
     CryptoAntContract = await ethers.getContractFactory("CryptoAnt");
+    AntEggTokenContract = await ethers.getContractFactory("AntEggToken");
     [_owner, addr1, addr2] = await ethers.getSigners();
 
-    CryptoAnt = await CryptoAntContract.deploy();
+    AntEggToken = await AntEggTokenContract.deploy();
+    CryptoAnt = await CryptoAntContract.deploy(AntEggToken.address);
   });
-  +-This function up here of should be used instead of repeating the code at the beginning of each Test Function, but when using "beforeEach(***)" or "before(***)" with
-  the Testing of this N.F.T, the following bug appears:_
-
-   "before each" hook for "Should set the right owner":
-     Error: missing argument:  in Contract constructor (count=0, expectedCount=1, code=MISSING_ARGUMENT, version=contracts/5.1.0).
-  
-  .*/
 
   describe("Deployment", async function () {
-    CryptoAntContract = await ethers.getContractFactory("CryptoAnt");
-    [_owner, addr1, addr2] = await ethers.getSigners();
-    CryptoAnt = await CryptoAntContract.deploy();
-    //+-This Code Up Here is repeated Code.
-
     it("Should set the right owner", async function () {
       expect(await CryptoAnt.owner()).to.equal(_owner.address);
     });
@@ -38,59 +28,46 @@ describe("CryptoAnt Smart-Contract", function () {
     });
   });
 
-  describe("Transactions", async function () {
-    CryptoAntContract = await ethers.getContractFactory("CryptoAnt");
-    [_owner, addr1, addr2] = await ethers.getSigners();
-    CryptoAnt = await CryptoAntContract.deploy();
-    //+-This Code Up Here is repeated Code.
+  describe("token distribution", async function () {
+    let result;
 
-    it("Should transfer Tokens between accounts", async function () {
-      //+-Transfer 50 tokens from owner to addr1:_
-      CryptoAnt.mint(_owner.address, 50);
-      await CryptoAnt.transfer(addr1.address, 50);
-      const addr1Balance = await CryptoAnt.balanceOf(addr1.address);
-      expect(addr1Balance).to.equal(50);
+    it("mints tokens", async function () {
+      await CryptoAnt.mint(accounts[0], "https://www.token-uri.com/nft");
 
-      //+-Transfer 50 tokens from addr1 to addr2:_
-      await CryptoAnt.connect(addr1).transfer(addr2.address, 50);
-      const addr2Balance = await CryptoAnt.balanceOf(addr2.address);
-      expect(addr2Balance).to.equal(50);
-    });
+      //+-It should increase the total supply:_
+      result = await CryptoAnt.totalSupply();
+      assert.equal(result.toString(), "1", "total supply is correct");
 
-    it("Should fail if sender doesn’t have enough tokens", async function () {
-      CryptoAnt.mint(_owner.address, 100);
-      const initialOwnerBalance = await CryptoAnt.balanceOf(_owner.address);
+      //+-It increments owner balance:_
+      result = await CryptoAnt.balanceOf(accounts[0]);
+      assert.equal(result.toString(), "1", "balanceOf is correct");
 
-      //+-Try to send 1 token from addr1 (0 tokens) to owner (100 tokens):_
-      await expect(
-        CryptoAnt.connect(addr1).transfer(_owner.address, 1)
-      ).to.be.revertedWith("transfer amount exceeds balance");
-
-      //+-Owner balance shouldn't have changed:_
-      expect(await CryptoAnt.balanceOf(_owner.address)).to.equal(
-        initialOwnerBalance
+      //+-Token should belong to owner:_
+      result = await CryptoAnt.ownerOf("1");
+      assert.equal(
+        result.toString(),
+        accounts[0].toString(),
+        "ownerOf is correct"
       );
-    });
+      result = await CryptoAnt.tokenOfOwnerByIndex(accounts[0], 0);
 
-    it("Should update balances after transfers", async function () {
-      CryptoAnt.mint(_owner.address, 200);
-      const initialOwnerBalance = await CryptoAnt.balanceOf(_owner.address);
+      //+-Owner can see all tokens:_
+      let balanceOf = await CryptoAnt.balanceOf(accounts[0]);
+      let tokenIds = [];
+      for (let i = 0; i < balanceOf; i++) {
+        let id = await CryptoAnt.tokenOfOwnerByIndex(accounts[0], i);
+        tokenIds.push(id.toString());
+      }
+      let expected = ["1"];
+      assert.equal(
+        tokenIds.toString(),
+        expected.toString(),
+        "tokenIds are correct"
+      );
 
-      //+-Transfer 100 tokens from owner to addr1:_
-      await CryptoAnt.transfer(addr1.address, 100);
-
-      //+-Transfer another 50 tokens from owner to addr2:_
-      await CryptoAnt.transfer(addr2.address, 50);
-
-      //+-Check balances:_
-      const finalOwnerBalance = await CryptoAnt.balanceOf(_owner.address);
-      expect(finalOwnerBalance).to.equal(initialOwnerBalance - 150);
-
-      const addr1Balance = await CryptoAnt.balanceOf(addr1.address);
-      expect(addr1Balance).to.equal(100);
-
-      const addr2Balance = await CryptoAnt.balanceOf(addr2.address);
-      expect(addr2Balance).to.equal(50);
+      //+-Token URI Correct:_
+      let tokenURI = await CryptoAnt.tokenURI("1");
+      assert.equal(tokenURI, "https://www.token-uri.com/nft");
     });
   });
 });

@@ -12,11 +12,19 @@ contract CryptoAnt is ERC721, ERC721Full {
   //+-We set the Ant Egg Token as a Variable to be able to receive it in exchange for giving an Ant:_
   AntEggToken public antEggToken;
 
+  address private _owner;
+
   //+-We set the Ant Egg Token in the Constructor to be able to receive it in exchange for giving an Ant:_
   constructor(AntEggToken _antEggToken) ERC721Full("CryptoAnt", "ANT") public {
 
     antEggToken = _antEggToken;
+    _owner = msg.sender;
   }
+
+  //+-Returns the Address of the CryptoAnts Game Owner:_
+    function owner() public view returns(address) {
+      return _owner;
+    }
 
   //+-Create Ant Function:_
   function createAnt(string memory _tokenURI) public payable returns(bool) {
